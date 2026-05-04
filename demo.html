@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menstrual Health Demo</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input { margin: 5px; padding: 5px; }
+        button { padding: 10px; margin-top: 10px; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+
+<body>
+
+<h2>Menstrual Health Prediction Demo</h2>
+
+<h4>Enter Features:</h4>
+
+<input id="lh" placeholder="LH"><br>
+<input id="estrogen" placeholder="Estrogen"><br>
+<input id="pdg" placeholder="PdG"><br>
+<input id="flow_volume" placeholder="Flow Volume"><br>
+<input id="flow_color" placeholder="Flow Color"><br>
+<input id="headaches" placeholder="Headaches (yes/no)"><br>
+<input id="cramps" placeholder="Cramps (yes/no)"><br>
+<input id="sorebreasts" placeholder="Sore Breasts (yes/no)"><br>
+<input id="fatigue" placeholder="Fatigue (yes/no)"><br>
+<input id="sleepissue" placeholder="Sleep Issue (yes/no)"><br>
+<input id="moodswing" placeholder="Mood Swing (yes/no)"><br>
+<input id="foodcravings" placeholder="Food Cravings (yes/no)"><br>
+<input id="indigestion" placeholder="Indigestion (yes/no)"><br>
+<input id="bloating" placeholder="Bloating (yes/no)"><br>
+
+<button onclick="predict()">Predict</button>
+
+<div class="result" id="output"></div>
+
+<script>
+function predict() {
+    let lh = parseFloat(document.getElementById("lh").value) || 0;
+    let estrogen = parseFloat(document.getElementById("estrogen").value) || 0;
+    let pdg = parseFloat(document.getElementById("pdg").value) || 0;
+    let cramps = document.getElementById("cramps").value.toLowerCase();
+
+    let phase = "";
+    let feedback = "";
+
+    // Simple logic (demo only)
+    if (cramps === "yes" || pdg < 2) {
+        phase = "Menstrual";
+        feedback = "You may be in the menstrual phase. Rest and gentle care are recommended.";
+    } 
+    else if (lh > 10 && estrogen > 50) {
+        phase = "Fertility";
+        feedback = "Hormone levels suggest fertility phase. Ovulation may be near.";
+    } 
+    else if (pdg > 5) {
+        phase = "Luteal";
+        feedback = "You may be in the luteal phase. Fatigue and mood changes are common.";
+    } 
+    else {
+        phase = "Follicular";
+        feedback = "You may be in the follicular phase. Energy levels may gradually increase.";
+    }
+
+    document.getElementById("output").innerHTML =
+        "Predicted Phase: " + phase + "<br><br>Feedback: " + feedback;
+}
+</script>
+
+</body>
+</html>
