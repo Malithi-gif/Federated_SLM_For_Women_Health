@@ -25,7 +25,7 @@
         <p class="lead">A privacy-preserving framework that predicts menstrual cycle phases and generates feature-grounded feedback using federated SLMs trained with LoRA adapters.</p>
         <div class="cta-row">
           <a class="button primary" href="#framework">Explore Framework</a>
-          <a class="button secondary" href="#demo">Try Demo Flow</a>
+          <a class="button secondary" href="demo.html">Try Demo Flow</a>
         </div>
       </div>
       <div class="hero-card">
@@ -120,26 +120,6 @@
       <div class="image-panel"><img src="assets/fig3_user_analysis.png" alt="User-level accuracy, latency, and token analysis" /></div>
     </section>
 
-    <section class="section alt" id="demo">
-      <div class="split reversed">
-        <div class="demo-box">
-          <label>LH level</label><input id="lh" type="range" min="0" max="100" value="72" />
-          <label>Estrogen level</label><input id="estrogen" type="range" min="0" max="100" value="75" />
-          <label>Symptoms</label>
-          <select id="symptom"><option>fatigue</option><option>cramps</option><option>bloating</option><option>headache</option><option>sore breasts</option></select>
-          <button class="button primary" id="runDemo">Generate Research Demo Output</button>
-        </div>
-        <div>
-          <span class="eyebrow">Interactive demonstration</span>
-          <h2>Show how structured records become phase prediction + feedback.</h2>
-          <p>This front-end demo illustrates the workflow. It is not a medical tool and does not run the trained model in the browser.</p>
-          <div class="output" id="demoOutput">
-            <strong>Predicted phase: Fertility</strong>
-            <p>Elevated LH and estrogen values may indicate a fertility-related pattern. Fatigue is considered when generating personalized feedback.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="section" id="future">
       <div class="section-heading compact">
