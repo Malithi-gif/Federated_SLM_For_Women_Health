@@ -1,242 +1,198 @@
+<!-- demo.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interactive Demo | Federated Health SLM</title>
+  <title>Demo | Federated Health SLM</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fff5fb, #f7efff);
-      color: #241327;
-    }
-
-    .demo-page {
-      padding: 60px 8%;
-      min-height: 100vh;
-    }
-
-    .demo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .demo-card, .result-card {
-      background: white;
-      border-radius: 28px;
-      padding: 32px;
-      box-shadow: 0 20px 50px rgba(120, 50, 130, 0.12);
-      border: 1px solid #efd6ea;
-    }
-
-    .demo-label {
-      font-weight: 700;
-      margin-top: 18px;
-      display: block;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      accent-color: #cf4ca3;
-    }
-
-    select {
-      width: 100%;
-      padding: 13px;
-      border-radius: 14px;
-      border: 1px solid #e3c7df;
-      margin-top: 8px;
-      background: #fff;
-      font-size: 15px;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .btn-demo {
-      margin-top: 24px;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 28px;
-      background: linear-gradient(90deg, #e34b9b, #7b50d9);
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .tag {
-      color: #e34b9b;
-      font-weight: 800;
-      letter-spacing: 2px;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      font-size: 48px;
-      line-height: 1.1;
-      margin: 12px 0;
-    }
-
-    .result-card {
-      margin-top: 28px;
-      border-left: 6px solid #e34b9b;
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    .value {
-      color: #7b50d9;
-      font-weight: 700;
-    }
-
-    @media(max-width: 900px) {
-      .demo-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 34px;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
-
 <body>
-  <main class="demo-page">
-    <div class="demo-grid">
+  <main class="section alt">
+    <div class="split reversed">
+      <div class="demo-box">
+        <label>LH level: <span id="lhVal">10</span></label>
+        <input id="lh" type="range" min="0" max="60" step="0.1" value="10" />
 
-      <section class="demo-card">
-        <label class="demo-label">LH level: <span id="lhValue" class="value">10</span></label>
-        <input type="range" id="lh" min="0" max="40" value="10" oninput="updateValues()">
+        <label>Estrogen level: <span id="estrogenVal">100</span></label>
+        <input id="estrogen" type="range" min="0" max="650" step="0.1" value="100" />
 
-        <label class="demo-label">Estrogen level: <span id="estrogenValue" class="value">50</span></label>
-        <input type="range" id="estrogen" min="0" max="300" value="50" oninput="updateValues()">
+        <label>PdG level: <span id="pdgVal">3</span></label>
+        <input id="pdg" type="range" min="0" max="30" step="0.1" value="3" />
 
-        <label class="demo-label">PdG level: <span id="pdgValue" class="value">5</span></label>
-        <input type="range" id="pdg" min="0" max="30" value="5" oninput="updateValues()">
-
-        <label class="demo-label">Flow Volume</label>
+        <label>Flow Volume</label>
         <select id="flow_volume">
-          <option value="none">None</option>
-          <option value="light">Light</option>
-          <option value="medium">Medium</option>
-          <option value="heavy">Heavy</option>
+          <option>Not at all</option>
+          <option>Spotting / Very Light</option>
+          <option>Light</option>
+          <option>Somewhat Light</option>
+          <option>Moderate</option>
+          <option>Somewhat Heavy</option>
+          <option>Heavy</option>
+          <option>Very Heavy</option>
+          <option>not_reported</option>
         </select>
 
-        <label class="demo-label">Flow Color</label>
+        <label>Flow Color</label>
         <select id="flow_color">
-          <option value="not_reported">Not reported</option>
-          <option value="pink">Pink</option>
-          <option value="red">Red</option>
-          <option value="dark_red">Dark red</option>
-          <option value="brown">Brown</option>
+          <option>Not at all</option>
+          <option>Pink</option>
+          <option>Bright Red</option>
+          <option>Dark Brown / Dark Red</option>
+          <option>Grey</option>
+          <option>Black</option>
+          <option>Other</option>
+          <option>not_reported</option>
         </select>
 
-        <label class="demo-label">Symptoms</label>
+        <label>Symptoms</label>
         <div class="feature-grid">
-          <select id="headaches"><option value="no">Headaches: No</option><option value="yes">Headaches: Yes</option></select>
-          <select id="cramps"><option value="no">Cramps: No</option><option value="yes">Cramps: Yes</option></select>
-          <select id="sorebreasts"><option value="no">Sore breasts: No</option><option value="yes">Sore breasts: Yes</option></select>
-          <select id="fatigue"><option value="no">Fatigue: No</option><option value="yes">Fatigue: Yes</option></select>
-          <select id="sleepissue"><option value="no">Sleep issue: No</option><option value="yes">Sleep issue: Yes</option></select>
-          <select id="moodswing"><option value="no">Mood swing: No</option><option value="yes">Mood swing: Yes</option></select>
-          <select id="foodcravings"><option value="no">Food cravings: No</option><option value="yes">Food cravings: Yes</option></select>
-          <select id="indigestion"><option value="no">Indigestion: No</option><option value="yes">Indigestion: Yes</option></select>
-          <select id="bloating"><option value="no">Bloating: No</option><option value="yes">Bloating: Yes</option></select>
+          <select id="headaches"></select>
+          <select id="cramps"></select>
+          <select id="sorebreasts"></select>
+          <select id="fatigue"></select>
+          <select id="sleepissue"></select>
+          <select id="moodswing"></select>
+          <select id="foodcravings"></select>
+          <select id="indigestion"></select>
+          <select id="bloating"></select>
         </div>
 
-        <button class="btn-demo" onclick="predictPhase()">Generate Research Demo Output</button>
-      </section>
+        <button class="button primary" onclick="predictPhase()">Generate Research Demo Output</button>
+        <br><br>
+        <a class="button secondary" href="index.html">Back to Home</a>
+      </div>
 
-      <section>
-        <div class="tag">Interactive Demonstration</div>
-        <h1>Show how structured records become phase prediction + feedback.</h1>
-        <p>
-          This front-end demo illustrates the workflow. It is not a medical tool and does not run the trained federated SLM in the browser.
-        </p>
+      <div>
+        <span class="eyebrow">Interactive demonstration</span>
+        <h2>Show how structured records become phase prediction + feedback.</h2>
+        <p>This front-end demo illustrates the workflow. It is not a medical tool and does not run the trained federated SLM in the browser.</p>
 
-        <div class="result-card" id="result">
+        <div class="output" id="demoOutput">
           <strong>Predicted phase:</strong> Waiting for input...
-          <br><br>
-          Adjust the feature values and click the button to generate a demo output.
+          <p>Adjust the feature values and click the button.</p>
         </div>
-      </section>
-
+      </div>
     </div>
   </main>
 
   <script>
-    function updateValues() {
-      document.getElementById("lhValue").innerText = document.getElementById("lh").value;
-      document.getElementById("estrogenValue").innerText = document.getElementById("estrogen").value;
-      document.getElementById("pdgValue").innerText = document.getElementById("pdg").value;
-    }
+    const symptomOptions = [
+      "Not at all",
+      "Very Low/Little",
+      "Low",
+      "Moderate",
+      "High",
+      "Very High",
+      "not_reported"
+    ];
+
+    const symptomLabels = {
+      headaches: "Headaches",
+      cramps: "Cramps",
+      sorebreasts: "Sore breasts",
+      fatigue: "Fatigue",
+      sleepissue: "Sleep issue",
+      moodswing: "Mood swing",
+      foodcravings: "Food cravings",
+      indigestion: "Indigestion",
+      bloating: "Bloating"
+    };
+
+    Object.keys(symptomLabels).forEach(id => {
+      const select = document.getElementById(id);
+      symptomOptions.forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt;
+        option.textContent = `${symptomLabels[id]}: ${opt}`;
+        select.appendChild(option);
+      });
+    });
+
+    const lh = document.getElementById("lh");
+    const estrogen = document.getElementById("estrogen");
+    const pdg = document.getElementById("pdg");
+
+    lh.oninput = () => document.getElementById("lhVal").innerText = lh.value;
+    estrogen.oninput = () => document.getElementById("estrogenVal").innerText = estrogen.value;
+    pdg.oninput = () => document.getElementById("pdgVal").innerText = pdg.value;
 
     function getVal(id) {
       return document.getElementById(id).value;
     }
 
+    function levelScore(value) {
+      if (value === "Very High") return 5;
+      if (value === "High") return 4;
+      if (value === "Moderate") return 3;
+      if (value === "Low") return 2;
+      if (value === "Very Low/Little") return 1;
+      return 0;
+    }
+
     function predictPhase() {
-      const lh = Number(getVal("lh"));
-      const estrogen = Number(getVal("estrogen"));
-      const pdg = Number(getVal("pdg"));
-      const flow = getVal("flow_volume");
+      const lhVal = Number(getVal("lh"));
+      const estrogenVal = Number(getVal("estrogen"));
+      const pdgVal = Number(getVal("pdg"));
+
+      const flowVolume = getVal("flow_volume");
+      const flowColor = getVal("flow_color");
+
+      const headaches = getVal("headaches");
       const cramps = getVal("cramps");
+      const sorebreasts = getVal("sorebreasts");
       const fatigue = getVal("fatigue");
-      const headache = getVal("headaches");
-      const sore = getVal("sorebreasts");
-      const sleep = getVal("sleepissue");
-      const mood = getVal("moodswing");
-      const craving = getVal("foodcravings");
+      const sleepissue = getVal("sleepissue");
+      const moodswing = getVal("moodswing");
+      const foodcravings = getVal("foodcravings");
       const indigestion = getVal("indigestion");
       const bloating = getVal("bloating");
 
       let phase = "Follicular";
-      let feedback = "The pattern suggests a follicular-related phase. Hormonal levels and symptoms appear relatively mild.";
+      let feedback = "The pattern suggests a follicular-related phase. Hormonal values and reported symptoms appear relatively mild.";
 
-      if (flow !== "none" || cramps === "yes") {
+      const flowPresent = !["Not at all", "not_reported"].includes(flowVolume);
+      const strongFlow = ["Moderate", "Somewhat Heavy", "Heavy", "Very Heavy"].includes(flowVolume);
+      const redColor = ["Bright Red", "Dark Brown / Dark Red", "Pink"].includes(flowColor);
+
+      const crampScore = levelScore(cramps);
+      const fatigueScore = levelScore(fatigue);
+      const bloatingScore = levelScore(bloating);
+      const soreScore = levelScore(sorebreasts);
+      const moodScore = levelScore(moodswing);
+      const headacheScore = levelScore(headaches);
+
+      if (flowPresent || strongFlow || crampScore >= 3) {
         phase = "Menstrual";
-        feedback = "The pattern suggests a menstrual-related phase. Flow indicators or cramps may explain the prediction. Gentle rest and symptom awareness may be helpful.";
-      } 
-      else if (lh >= 18 && estrogen >= 100) {
+        feedback = "The pattern suggests a menstrual-related phase. Flow indicators, flow color, or cramps may be contributing to this prediction.";
+      } else if (lhVal >= 15 && estrogenVal >= 100 && pdgVal <= 5) {
         phase = "Fertility";
-        feedback = "Elevated LH and estrogen values may indicate a fertility-related pattern. The feedback is generated based on hormone changes and selected symptoms.";
-      } 
-      else if (pdg >= 8 || sore === "yes" || bloating === "yes") {
+        feedback = "Elevated LH and estrogen with relatively lower PdG may indicate a fertility-related pattern.";
+      } else if (pdgVal >= 7 || bloatingScore >= 3 || soreScore >= 3 || moodScore >= 3) {
         phase = "Luteal";
-        feedback = "The pattern suggests a luteal-related phase. PdG level, bloating, breast tenderness, fatigue, or mood changes may contribute to this prediction.";
+        feedback = "The pattern suggests a luteal-related phase. PdG level, bloating, breast tenderness, or mood changes may contribute to this prediction.";
       }
 
       let symptoms = [];
-      if (fatigue === "yes") symptoms.push("fatigue");
-      if (headache === "yes") symptoms.push("headaches");
-      if (sleep === "yes") symptoms.push("sleep issues");
-      if (mood === "yes") symptoms.push("mood swings");
-      if (craving === "yes") symptoms.push("food cravings");
-      if (indigestion === "yes") symptoms.push("indigestion");
-      if (bloating === "yes") symptoms.push("bloating");
+      if (headacheScore >= 2) symptoms.push("headaches");
+      if (crampScore >= 2) symptoms.push("cramps");
+      if (soreScore >= 2) symptoms.push("sore breasts");
+      if (fatigueScore >= 2) symptoms.push("fatigue");
+      if (levelScore(sleepissue) >= 2) symptoms.push("sleep issues");
+      if (moodScore >= 2) symptoms.push("mood swings");
+      if (levelScore(foodcravings) >= 2) symptoms.push("food cravings");
+      if (levelScore(indigestion) >= 2) symptoms.push("indigestion");
+      if (bloatingScore >= 2) symptoms.push("bloating");
 
       if (symptoms.length > 0) {
         feedback += " Reported symptoms include " + symptoms.join(", ") + ".";
       }
 
-      document.getElementById("result").innerHTML =
-        "<strong>Predicted phase:</strong> " + phase +
-        "<br><br><strong>Personalized feedback:</strong> " + feedback;
+      document.getElementById("demoOutput").innerHTML = `
+        <strong>Predicted phase:</strong> ${phase}
+        <p><strong>Personalized feedback:</strong> ${feedback}</p>
+        <p><strong>Input summary:</strong> LH=${lhVal}, Estrogen=${estrogenVal}, PdG=${pdgVal}, Flow=${flowVolume}, Color=${flowColor}</p>
+      `;
     }
   </script>
 </body>
