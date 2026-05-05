@@ -19,7 +19,7 @@ https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
 - `style.css` — website styling
 - `script.js` — website interaction script
 - `assets/` — figures and images used in the website
-- `.gitignore/` — implementation code for data preprocessing, federated SLM training, LoRA fine-tuning, and inference
+- `codes/` — implementation code for data preprocessing, federated SLM training, LoRA fine-tuning, and inference
 
 ## Project Summary
 
