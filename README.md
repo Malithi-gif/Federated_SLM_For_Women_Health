@@ -1,15 +1,26 @@
-# Federated SLM Women’s Health Research Website
+# Federated SLMs for Women’s Health Support
 
-This is a static website for demonstrating the paper:
-"Federated Small Language Models for Personalized and Interpretable Women’s Health Support on Consumer Devices."
+This repository contains the research website, interactive demo, and implementation code for:
 
-## Publish with GitHub Pages
+**Federated Small Language Models for Personalized and Interpretable Women’s Health Support on Consumer Devices**
 
-1. Create a new GitHub repository.
-2. Upload all files in this folder.
-3. Go to Settings → Pages.
-4. Under "Build and deployment," choose "Deploy from a branch."
-5. Select the `main` branch and `/root`, then click Save.
-6. GitHub will provide a public website link after deployment.
+## Website
 
-Note: The interactive demo is a front-end research illustration and does not run the trained model in the browser.
+Live website:  
+https://malithi-gif.github.io/Federated_SLM_For_Women_Health/
+
+Demo page:  
+https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
+
+## Repository Contents
+
+- `index.html` — main website page
+- `demo.html` — interactive demo page
+- `style.css` — website styling
+- `script.js` — website interaction script
+- `assets/` — figures and images used in the website
+- `codes/` — implementation code for data preprocessing, federated SLM training, LoRA fine-tuning, and inference
+
+## Project Summary
+
+This project presents a privacy-preserving women’s health support framework using federated small language models. The framework predicts menstrual cycle phases and generates personalized, feature-grounded feedback using hormonal, physiological, and symptom-related features.
