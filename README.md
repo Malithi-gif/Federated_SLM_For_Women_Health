@@ -9,7 +9,7 @@ This repository contains the research website, interactive demo, and implementat
 Live website:  
 https://malithi-gif.github.io/Federated_SLM_For_Women_Health/
 
-Demo page:  
+Demo page: This page provides an example demo and does not currently include the models. However, we plan to integrate the models in the future.
 https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
 
 ## Repository Contents
