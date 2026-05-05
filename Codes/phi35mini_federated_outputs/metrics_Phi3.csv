@@ -1,0 +1,2 @@
+﻿model,num_total_women,num_train_women_clients,num_rounds,local_epochs,accuracy,macro_f1,weighted_f1
+Qwen/Qwen2.5-3B-Instruct,15,10,50,1,0.8251,0.8032,0.821
