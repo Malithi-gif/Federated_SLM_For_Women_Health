@@ -9,7 +9,7 @@ This repository contains the research website, interactive demo, and implementat
 Live website:  
 https://malithi-gif.github.io/Federated_SLM_For_Women_Health/
 
-Demo page:  
+Demo page: This page provides an example demo and does not currently include the models. However, we plan to integrate the models in the future.
 https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
 
 ## Repository Contents
@@ -19,7 +19,7 @@ https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
 - `style.css` — website styling
 - `script.js` — website interaction script
 - `assets/` — figures and images used in the website
-- `.gitignore/` — implementation code for data preprocessing, federated SLM training, LoRA fine-tuning, and inference
+- `codes/` — implementation code for data preprocessing, federated SLM training, LoRA fine-tuning, and inference
 
 ## Project Summary
 
