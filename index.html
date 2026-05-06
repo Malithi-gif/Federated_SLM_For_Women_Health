@@ -18,22 +18,42 @@
         <a href="#future">Future</a>
       </div>
     </nav>
+
     <section class="hero-grid">
       <div class="hero-copy">
         <span class="eyebrow">IEEE Transactions on Consumer Electronics · Research Demo</span>
+
         <h1>Federated Small Language Models for Personalized and Interpretable Women’s Health Support</h1>
-        <p class="lead">A privacy-preserving framework that predicts menstrual cycle phases and generates feature-grounded feedback using federated SLMs trained with LoRA adapters.</p>
+
+        <p class="lead">
+          A privacy-preserving framework that predicts menstrual cycle phases and generates
+          feature-grounded feedback using federated SLMs trained with LoRA adapters.
+        </p>
+
+        <div class="authors">
+          <span>Malithi Mithsara Wanniarachchi Kankanamge</span>
+          <span>Ning Yang</span>
+          <span>Mohd Farhan Israk Soumik</span>
+          <span>Ahmed Imteaj</span>
+          <span>Hussein Zangoti</span>
+          <span>Abdur R. Shahid</span>
+        </div>
+
         <div class="cta-row">
           <a class="button primary" href="#framework">Explore Framework</a>
           <a class="button secondary" href="demo.html">Try Demo Flow</a>
         </div>
       </div>
+
       <div class="hero-card">
         <div class="phone">
           <div class="phone-top"></div>
           <h3>Predicted Phase</h3>
           <div class="phase-pill">Luteal</div>
-          <p>Hormone-related changes and symptoms suggest luteal-phase patterns. Fatigue and bloating may be contributing to discomfort.</p>
+          <p>
+            Hormone-related changes and symptoms suggest luteal-phase patterns.
+            Fatigue and bloating may be contributing to discomfort.
+          </p>
         </div>
         <div class="floating-card one">Local data stays on device</div>
         <div class="floating-card two">Only LoRA updates are shared</div>
@@ -46,15 +66,32 @@
       <div class="section-heading">
         <span class="eyebrow">Why this work matters</span>
         <h2>Current menstrual health apps mostly track and predict, but rarely explain.</h2>
-        <p>Existing systems provide useful logging, cycle estimation, and period prediction, but often lack personalized feedback and raise privacy concerns when sensitive reproductive health data is processed centrally.</p>
+        <p>
+          Existing systems provide useful logging, cycle estimation, and period prediction,
+          but often lack personalized feedback and raise privacy concerns when sensitive
+          reproductive health data is processed centrally.
+        </p>
       </div>
+
       <div class="image-panel">
         <img src="assets/fig1_apps_gap.png" alt="Existing menstrual health app limitations" />
       </div>
+
       <div class="cards three">
-        <article><h3>Limited interpretation</h3><p>Users receive outputs without clear links to symptoms, hormones, or lifestyle signals.</p></article>
-        <article><h3>Sensitive data risk</h3><p>Centralized pipelines can expose hormonal, physiological, and self-reported data.</p></article>
-        <article><h3>Need for personalization</h3><p>Women’s health patterns vary by individual, requiring user-centered learning.</p></article>
+        <article>
+          <h3>Limited interpretation</h3>
+          <p>Users receive outputs without clear links to symptoms, hormones, or lifestyle signals.</p>
+        </article>
+
+        <article>
+          <h3>Sensitive data risk</h3>
+          <p>Centralized pipelines can expose hormonal, physiological, and self-reported data.</p>
+        </article>
+
+        <article>
+          <h3>Need for personalization</h3>
+          <p>Women’s health patterns vary by individual, requiring user-centered learning.</p>
+        </article>
       </div>
     </section>
 
@@ -63,11 +100,31 @@
         <span class="eyebrow">Main contributions</span>
         <h2>What I built in this paper</h2>
       </div>
+
       <div class="timeline">
-        <div><span>01</span><h3>Feature-to-text conversion</h3><p>Transforms hormonal, symptom, and lifestyle records into natural-language health summaries.</p></div>
-        <div><span>02</span><h3>Federated SLM training</h3><p>Trains Qwen2.5-3B and Phi-3-mini with LoRA adapters across participant-level clients.</p></div>
-        <div><span>03</span><h3>Personalized feedback</h3><p>Generates concise, phase-specific feedback grounded in each record’s features.</p></div>
-        <div><span>04</span><h3>Resource evaluation</h3><p>Measures accuracy, F1, latency, RAM, CPU, and GPU usage for practical deployment analysis.</p></div>
+        <div>
+          <span>01</span>
+          <h3>Feature-to-text conversion</h3>
+          <p>Transforms hormonal, symptom, and lifestyle records into natural-language health summaries.</p>
+        </div>
+
+        <div>
+          <span>02</span>
+          <h3>Federated SLM training</h3>
+          <p>Trains Qwen2.5-3B and Phi-3-mini with LoRA adapters across participant-level clients.</p>
+        </div>
+
+        <div>
+          <span>03</span>
+          <h3>Personalized feedback</h3>
+          <p>Generates concise, phase-specific feedback grounded in each record’s features.</p>
+        </div>
+
+        <div>
+          <span>04</span>
+          <h3>Resource evaluation</h3>
+          <p>Measures accuracy, F1, latency, RAM, CPU, and GPU usage for practical deployment analysis.</p>
+        </div>
       </div>
     </section>
 
@@ -76,14 +133,22 @@
         <div>
           <span class="eyebrow">Proposed framework</span>
           <h2>Privacy-aware menstrual health intelligence with federated LoRA adapters.</h2>
-          <p>The system keeps participant data local, converts each record into a chat-style prompt, fine-tunes only lightweight LoRA parameters, and aggregates adapter updates through FedAvg.</p>
+
+          <p>
+            The system keeps participant data local, converts each record into a chat-style prompt,
+            fine-tunes only lightweight LoRA parameters, and aggregates adapter updates through FedAvg.
+          </p>
+
           <ul class="checklist">
             <li>15 participants are modeled as federated clients.</li>
             <li>10 clients for training, 2 for validation, and 3 for testing.</li>
             <li>Each output includes a phase prediction and natural-language feedback.</li>
           </ul>
         </div>
-        <div class="image-panel no-pad"><img src="assets/fig2_framework.png" alt="Federated SLM framework diagram" /></div>
+
+        <div class="image-panel no-pad">
+          <img src="assets/fig2_framework.png" alt="Federated SLM framework diagram" />
+        </div>
       </div>
     </section>
 
@@ -92,11 +157,27 @@
         <span class="eyebrow">Dataset and models</span>
         <h2>mcPHASES + Qwen2.5-3B + Phi-3-mini</h2>
       </div>
+
       <div class="metric-grid">
-        <div><strong>5,659</strong><span>menstrual health records</span></div>
-        <div><strong>18</strong><span>hormonal, symptom, and lifestyle features</span></div>
-        <div><strong>4</strong><span>target phases: menstrual, follicular, fertility, luteal</span></div>
-        <div><strong>LoRA</strong><span>parameter-efficient adaptation</span></div>
+        <div>
+          <strong>5,659</strong>
+          <span>menstrual health records</span>
+        </div>
+
+        <div>
+          <strong>18</strong>
+          <span>hormonal, symptom, and lifestyle features</span>
+        </div>
+
+        <div>
+          <strong>4</strong>
+          <span>target phases: menstrual, follicular, fertility, luteal</span>
+        </div>
+
+        <div>
+          <strong>LoRA</strong>
+          <span>parameter-efficient adaptation</span>
+        </div>
       </div>
     </section>
 
@@ -105,37 +186,65 @@
         <span class="eyebrow">Experimental results</span>
         <h2>Both federated SLMs achieve strong and balanced performance.</h2>
       </div>
+
       <div class="model-toggle" role="tablist">
         <button class="active" data-model="qwen">Qwen2.5-3B</button>
         <button data-model="phi">Phi-3-mini</button>
       </div>
+
       <div class="results-card">
-        <div class="score-ring"><span id="accuracy">83.94%</span><small>Accuracy</small></div>
+        <div class="score-ring">
+          <span id="accuracy">83.94%</span>
+          <small>Accuracy</small>
+        </div>
+
         <div class="bars">
-          <label>Macro F1 <span id="macro">81.79%</span></label><div class="bar"><span id="macroBar"></span></div>
-          <label>Weighted F1 <span id="weighted">83.49%</span></label><div class="bar"><span id="weightedBar"></span></div>
-          <label>GPU Memory <span id="gpu">6.01 GB</span></label><div class="bar"><span id="gpuBar"></span></div>
+          <label>Macro F1 <span id="macro">81.79%</span></label>
+          <div class="bar"><span id="macroBar"></span></div>
+
+          <label>Weighted F1 <span id="weighted">83.49%</span></label>
+          <div class="bar"><span id="weightedBar"></span></div>
+
+          <label>GPU Memory <span id="gpu">6.01 GB</span></label>
+          <div class="bar"><span id="gpuBar"></span></div>
         </div>
       </div>
-      <div class="image-panel"><img src="assets/fig3_user_analysis.png" alt="User-level accuracy, latency, and token analysis" /></div>
-    </section>
 
+      <div class="image-panel">
+        <img src="assets/fig3_user_analysis.png" alt="User-level accuracy, latency, and token analysis" />
+      </div>
+    </section>
 
     <section class="section" id="future">
       <div class="section-heading compact">
         <span class="eyebrow">Limitations and future work</span>
         <h2>Next steps toward real-world deployment</h2>
       </div>
+
       <div class="cards three">
-        <article><h3>More diverse users</h3><p>Evaluate on larger and more representative women’s health datasets.</p></article>
-        <article><h3>Stronger privacy</h3><p>Add secure aggregation and differential privacy to protect model updates.</p></article>
-        <article><h3>Feedback validation</h3><p>Use expert review and user-centered studies to assess safety, usefulness, and readability.</p></article>
+        <article>
+          <h3>More diverse users</h3>
+          <p>Evaluate on larger and more representative women’s health datasets.</p>
+        </article>
+
+        <article>
+          <h3>Stronger privacy</h3>
+          <p>Add secure aggregation and differential privacy to protect model updates.</p>
+        </article>
+
+        <article>
+          <h3>Feedback validation</h3>
+          <p>Use expert review and user-centered studies to assess safety, usefulness, and readability.</p>
+        </article>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Research demonstration for “Federated Small Language Models for Personalized and Interpretable Women’s Health Support on Consumer Devices.” Not medical advice.</p>
+    <p>
+      Research demonstration for “Federated Small Language Models for Personalized and
+      Interpretable Women’s Health Support on Consumer Devices.” Not medical advice.
+    </p>
     <a href="#top">Back to top ↑</a>
   </footer>
 
