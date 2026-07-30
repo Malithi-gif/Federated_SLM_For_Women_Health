@@ -1,0 +1,79 @@
+{
+  "model_name": "distilbert/distilbert-base-uncased",
+  "target_column": "phase",
+  "client_column": "id",
+  "feature_columns": [
+    "study_interval",
+    "is_weekend",
+    "day_in_study",
+    "lh",
+    "estrogen",
+    "pdg",
+    "flow_volume",
+    "flow_color",
+    "headaches",
+    "cramps",
+    "sorebreasts",
+    "fatigue",
+    "sleepissue",
+    "moodswing",
+    "foodcravings",
+    "indigestion",
+    "bloating"
+  ],
+  "numeric_features": [
+    "study_interval",
+    "day_in_study",
+    "lh",
+    "estrogen",
+    "pdg"
+  ],
+  "categorical_features": [
+    "is_weekend",
+    "flow_volume",
+    "flow_color",
+    "headaches",
+    "cramps",
+    "sorebreasts",
+    "fatigue",
+    "sleepissue",
+    "moodswing",
+    "foodcravings",
+    "indigestion",
+    "bloating"
+  ],
+  "numeric_medians": {
+    "study_interval": 2022.0,
+    "day_in_study": 71.0,
+    "lh": 4.6,
+    "estrogen": 83.9,
+    "pdg": 3.0
+  },
+  "categorical_fill_values": {
+    "is_weekend": "False",
+    "flow_volume": "not_reported",
+    "flow_color": "not_reported",
+    "headaches": "not_reported",
+    "cramps": "not_reported",
+    "sorebreasts": "not_reported",
+    "fatigue": "not_reported",
+    "sleepissue": "not_reported",
+    "moodswing": "not_reported",
+    "foodcravings": "not_reported",
+    "indigestion": "not_reported",
+    "bloating": "not_reported"
+  },
+  "max_seq_length": 384,
+  "label2id": {
+    "Menstrual": 0,
+    "Follicular": 1,
+    "Fertility": 2,
+    "Luteal": 3
+  },
+  "id2label": {
+    "0": "Menstrual",
+    "1": "Follicular",
+    "2": "Fertility",
+    "3": "Luteal"
+  }
+}
