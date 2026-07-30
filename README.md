@@ -25,3 +25,13 @@ git push origin main
 ```
 
 The demo is an interface illustration and does not load a trained model.
+
+## Website
+
+Live project website:
+
+https://malithi-gif.github.io/Federated_SLM_For_Women_Health/
+
+Demo page:
+
+https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
