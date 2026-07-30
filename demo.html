@@ -3,94 +3,540 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Static demonstration of menstrual phase classification inputs." />
+
+  <meta
+    name="description"
+    content="Live DistilBERT menstrual phase classification demonstration."
+  />
+
   <title>Menstrual Phase Classification Demo</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="style.css?v=6" />
+
   <style>
-    .demo-shell{width:min(900px,calc(100% - 40px));margin:60px auto 100px}
-    .demo-form{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;background:white;border:1px solid var(--line);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)}
-    .demo-form label{display:grid;gap:7px;font-weight:750}
-    .demo-form input,.demo-form select{width:100%;border:1px solid var(--line);padding:12px;border-radius:11px;font:inherit}
-    .full{grid-column:1/-1}
-    .demo-output{margin-top:22px;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:24px}
-    .demo-output strong{font-size:1.4rem;color:var(--rose)}
-    @media(max-width:700px){.demo-form{grid-template-columns:1fr}.full{grid-column:auto}}
+    .demo-shell {
+      width: min(900px, calc(100% - 40px));
+      margin: 60px auto 100px;
+    }
+
+    .model-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: #e2f2ea;
+      color: #2c775a;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .model-badge::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #2c775a;
+    }
+
+    .demo-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .demo-form label {
+      display: grid;
+      gap: 7px;
+      font-weight: 750;
+    }
+
+    .demo-form input,
+    .demo-form select {
+      width: 100%;
+      border: 1px solid var(--line);
+      padding: 12px;
+      border-radius: 11px;
+      font: inherit;
+      background: white;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .predict-button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .predict-button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .demo-output {
+      margin-top: 22px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      min-height: 100px;
+    }
+
+    .phase-output {
+      font-size: 2.6rem;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--rose);
+      margin: 8px 0 14px;
+    }
+
+    .probability-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 22px;
+    }
+
+    .probability-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 72px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .probability-label {
+      font-weight: 750;
+    }
+
+    .probability-track {
+      height: 10px;
+      background: #eee1e8;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .probability-fill {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--rose);
+    }
+
+    .probability-value {
+      text-align: right;
+      font-weight: 800;
+    }
+
+    .output-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .error-box {
+      color: #8f1d1d;
+      background: #fff1f1;
+      border: 1px solid #efcaca;
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .demo-form {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .probability-row {
+        grid-template-columns: 90px 1fr 65px;
+      }
+    }
   </style>
 </head>
+
 <body>
-<nav class="nav container">
-  <a class="brand" href="index.html"><span class="brand-mark">FH</span> Federated Health SLM</a>
-  <a href="index.html">← Main page</a>
-</nav>
+  <nav class="nav container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">FH</span>
+      Federated Health SLM
+    </a>
 
-<main class="demo-shell">
-  <span class="eyebrow">Static research demonstration</span>
-  <h1 style="font-size:clamp(2.3rem,5vw,4rem)">Menstrual phase classification flow</h1>
-  <p class="lead">
-    This browser-only example illustrates the input and output format. It does not load a trained
-    model and must not be used for health decisions.
-  </p>
+    <a href="index.html">← Main page</a>
+  </nav>
 
-  <form class="demo-form" id="demoForm">
-    <label>LH value
-      <input id="lh" type="number" min="0" step="0.1" value="72" required />
-    </label>
-    <label>Estrogen value
-      <input id="estrogen" type="number" min="0" step="0.1" value="68" required />
-    </label>
-    <label>PdG value
-      <input id="pdg" type="number" min="0" step="0.1" value="4.5" required />
-    </label>
-    <label>Reported symptom
-      <select id="symptom">
-        <option value="none">None reported</option>
-        <option value="cramps">Cramps</option>
-        <option value="bloating">Bloating</option>
-        <option value="fatigue">Fatigue</option>
-        <option value="headache">Headache</option>
-      </select>
-    </label>
-    <label>Flow
-      <select id="flow">
-        <option value="not_reported">Not reported</option>
-        <option value="none">None</option>
-        <option value="light">Light</option>
-        <option value="medium">Medium</option>
-        <option value="heavy">Heavy</option>
-      </select>
-    </label>
-    <label>Stress level
-      <select id="stress">
-        <option>Low</option><option selected>Moderate</option><option>High</option>
-      </select>
-    </label>
-    <button class="button primary full" type="submit">Run illustrative classification</button>
-  </form>
+  <main class="demo-shell">
+    <span class="model-badge">Live DistilBERT DP model</span>
 
-  <div class="demo-output" id="demoOutput" aria-live="polite">
-    Enter the features and select the demonstration button.
-  </div>
-</main>
+    <span class="eyebrow">Research demonstration</span>
 
-<script>
-document.getElementById("demoForm").addEventListener("submit", event => {
-  event.preventDefault();
-  const lh = Number(document.getElementById("lh").value);
-  const estrogen = Number(document.getElementById("estrogen").value);
-  const pdg = Number(document.getElementById("pdg").value);
-  const symptom = document.getElementById("symptom").value;
-  const flow = document.getElementById("flow").value;
+    <h1 style="font-size:clamp(2.3rem,5vw,4rem)">
+      Menstrual phase classification
+    </h1>
 
-  let phase = "Follicular";
-  if (flow !== "none" && flow !== "not_reported") phase = "Menstrual";
-  else if (lh >= 65 && estrogen >= 60) phase = "Fertility";
-  else if (pdg >= 5 || ["bloating","fatigue","headache"].includes(symptom)) phase = "Luteal";
+    <p class="lead">
+      This form sends the entered menstrual health features to the deployed
+      federated DistilBERT model and returns a predicted phase with class
+      probabilities.
+    </p>
 
-  document.getElementById("demoOutput").innerHTML = `
-    <strong>Illustrative output: ${phase}</strong>
-    <p>This is a hand-written browser rule used only to demonstrate the web interface.
-    It is not a prediction from any trained model.</p>`;
-});
-</script>
+    <form class="demo-form" id="demoForm">
+      <label>
+        Study interval
+        <input
+          id="study_interval"
+          type="number"
+          step="1"
+          value="2022"
+          required
+        />
+      </label>
+
+      <label>
+        Weekend
+        <select id="is_weekend">
+          <option value="false" selected>No</option>
+          <option value="true">Yes</option>
+        </select>
+      </label>
+
+      <label>
+        Day in study
+        <input
+          id="day_in_study"
+          type="number"
+          min="0"
+          step="1"
+          value="20"
+          required
+        />
+      </label>
+
+      <label>
+        LH value
+        <input
+          id="lh"
+          type="number"
+          min="0"
+          step="0.1"
+          value="4.6"
+          required
+        />
+      </label>
+
+      <label>
+        Estrogen value
+        <input
+          id="estrogen"
+          type="number"
+          min="0"
+          step="0.1"
+          value="83.9"
+          required
+        />
+      </label>
+
+      <label>
+        PdG value
+        <input
+          id="pdg"
+          type="number"
+          min="0"
+          step="0.1"
+          value="3.0"
+          required
+        />
+      </label>
+
+      <label>
+        Flow volume
+        <select id="flow_volume">
+          <option value="not_reported" selected>Not reported</option>
+          <option value="Not at all">Not at all</option>
+          <option value="Very Low/Little">Very low / little</option>
+          <option value="Low">Low</option>
+          <option value="Moderate">Moderate</option>
+          <option value="High">High</option>
+          <option value="Very High/A Lot">Very high / a lot</option>
+        </select>
+      </label>
+
+      <label>
+        Flow color
+        <select id="flow_color">
+          <option value="not_reported" selected>Not reported</option>
+          <option value="Red">Red</option>
+          <option value="Dark red">Dark red</option>
+          <option value="Brown">Brown</option>
+          <option value="Pink">Pink</option>
+          <option value="Other">Other</option>
+        </select>
+      </label>
+
+      <label>
+        Headaches
+        <select id="headaches" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Cramps
+        <select id="cramps" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Sore breasts
+        <select id="sorebreasts" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Fatigue
+        <select id="fatigue" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Sleep issue
+        <select id="sleepissue" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Mood swing
+        <select id="moodswing" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Food cravings
+        <select id="foodcravings" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Indigestion
+        <select id="indigestion" class="symptom-select"></select>
+      </label>
+
+      <label>
+        Bloating
+        <select id="bloating" class="symptom-select"></select>
+      </label>
+
+      <button
+        class="button primary full predict-button"
+        id="predictButton"
+        type="submit"
+      >
+        Predict with DistilBERT
+      </button>
+    </form>
+
+    <div class="demo-output" id="demoOutput" aria-live="polite">
+      Enter the features and select
+      <strong>Predict with DistilBERT</strong>.
+    </div>
+  </main>
+
+  <script>
+    const API_URL =
+      "https://distilbert-menstrual-phase-api.onrender.com";
+
+    const symptomOptions = [
+      "not_reported",
+      "Not at all",
+      "Very Low/Little",
+      "Low",
+      "Moderate",
+      "High",
+      "Very High/A Lot"
+    ];
+
+    document.querySelectorAll(".symptom-select").forEach((select) => {
+      select.innerHTML = symptomOptions
+        .map((value) => {
+          let label = value.replaceAll("_", " ");
+
+          if (value === "Very Low/Little") {
+            label = "Very low / little";
+          }
+
+          if (value === "Very High/A Lot") {
+            label = "Very high / a lot";
+          }
+
+          return `<option value="${value}">${label}</option>`;
+        })
+        .join("");
+    });
+
+    function createProbabilityRows(probabilities) {
+      return Object.entries(probabilities)
+        .map(([label, probability]) => {
+          const percentage = Number(probability) * 100;
+
+          return `
+            <div class="probability-row">
+              <span class="probability-label">${label}</span>
+
+              <div class="probability-track">
+                <span
+                  class="probability-fill"
+                  style="width:${percentage.toFixed(2)}%"
+                ></span>
+              </div>
+
+              <span class="probability-value">
+                ${percentage.toFixed(2)}%
+              </span>
+            </div>
+          `;
+        })
+        .join("");
+    }
+
+    document
+      .getElementById("demoForm")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const button = document.getElementById("predictButton");
+        const output = document.getElementById("demoOutput");
+
+        const payload = {
+          study_interval: Number(
+            document.getElementById("study_interval").value
+          ),
+
+          is_weekend:
+            document.getElementById("is_weekend").value === "true",
+
+          day_in_study: Number(
+            document.getElementById("day_in_study").value
+          ),
+
+          lh: Number(
+            document.getElementById("lh").value
+          ),
+
+          estrogen: Number(
+            document.getElementById("estrogen").value
+          ),
+
+          pdg: Number(
+            document.getElementById("pdg").value
+          ),
+
+          flow_volume:
+            document.getElementById("flow_volume").value,
+
+          flow_color:
+            document.getElementById("flow_color").value,
+
+          headaches:
+            document.getElementById("headaches").value,
+
+          cramps:
+            document.getElementById("cramps").value,
+
+          sorebreasts:
+            document.getElementById("sorebreasts").value,
+
+          fatigue:
+            document.getElementById("fatigue").value,
+
+          sleepissue:
+            document.getElementById("sleepissue").value,
+
+          moodswing:
+            document.getElementById("moodswing").value,
+
+          foodcravings:
+            document.getElementById("foodcravings").value,
+
+          indigestion:
+            document.getElementById("indigestion").value,
+
+          bloating:
+            document.getElementById("bloating").value
+        };
+
+        button.disabled = true;
+        button.textContent = "Running DistilBERT…";
+
+        output.innerHTML = `
+          <p>
+            Sending the feature record to the model API.
+            The first request may take longer while Render starts the service.
+          </p>
+        `;
+
+        try {
+          const response = await fetch(`${API_URL}/predict`, {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(payload)
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(
+              data.detail ||
+              `Prediction failed with status ${response.status}`
+            );
+          }
+
+          output.innerHTML = `
+            <span class="eyebrow">Model output</span>
+
+            <div class="phase-output">
+              ${data.predicted_phase}
+            </div>
+
+            <p>
+              Confidence:
+              <strong>
+                ${(Number(data.confidence) * 100).toFixed(2)}%
+              </strong>
+            </p>
+
+            <div class="probability-list">
+              ${createProbabilityRows(data.probabilities)}
+            </div>
+
+            <p class="output-note">
+              Model: ${data.model}<br>
+              Privacy setting: ${data.privacy_setting}<br>
+              ${data.disclaimer}
+            </p>
+          `;
+        } catch (error) {
+          output.innerHTML = `
+            <div class="error-box">
+              <strong>Unable to complete the prediction.</strong>
+
+              <p>${error.message}</p>
+
+              <p>
+                Confirm that the Render API is live:
+                <br>
+                ${API_URL}/health
+              </p>
+            </div>
+          `;
+        } finally {
+          button.disabled = false;
+          button.textContent = "Predict with DistilBERT";
+        }
+      });
+  </script>
 </body>
 </html>
