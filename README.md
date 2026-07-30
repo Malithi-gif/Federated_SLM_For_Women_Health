@@ -1,26 +1,54 @@
-# Federated SLMs for Women’s Health Support
+# Secure Federated SLMs for Women’s Health Support
 
-This repository contains the research website, interactive demo, and implementation code for:
+This repository contains the research website and implementation materials for:
 
-**Federated Small Language Models for Personalized and Interpretable Women’s Health Support on Consumer Devices**
+**Secure Federated LoRA Fine-Tuning of Small Language Models for Women’s Health Support on Consumer Devices**
+
+## Research focus
+
+The project studies participant-level federated menstrual phase classification under two privacy-preserving settings:
+
+1. **Post-quantum-secure communication**
+   - ML-KEM
+   - HKDF-SHA256
+   - AES-256-GCM
+
+2. **Client-level differential privacy**
+   - L2 update clipping
+   - Gaussian noise
+   - RDP privacy accounting
+
+The evaluated models are DistilBERT-base, SmolLM3-3B, Qwen2.5-3B, Phi-3.5-mini, and Llama-3.1-8B.
 
 ## Website
 
-Live website:  
-https://malithi-gif.github.io/Federated_SLM_For_Women_Health/
+- Project page: https://malithi-gif.github.io/Federated_SLM_For_Women_Health/
+- Static classification-flow demo: https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
 
-Demo page: This page provides an example demo and does not currently include the models. However, we plan to integrate the models in the future.
-https://malithi-gif.github.io/Federated_SLM_For_Women_Health/demo.html
+The demo is a browser-only interface illustration. It does not load a trained model and must not be used for medical decisions.
 
-## Repository Contents
+## Repository structure
 
-- `index.html` — main website page
-- `demo.html` — interactive demo page
-- `style.css` — website styling
-- `script.js` — website interaction script
-- `assets/` — figures and images used in the website
-- `codes/` — implementation code for data preprocessing, federated SLM training, LoRA fine-tuning, and inference
+- `index.html` — updated project website
+- `demo.html` — static classification-flow demonstration
+- `style.css` — responsive website styling
+- `script.js` — interactive model and privacy-setting comparison
+- `assets/` — figures and images
+- `codes/` — training and evaluation code
 
-## Project Summary
+## Main experimental finding
 
-This project presents a privacy-preserving women’s health support framework using federated small language models. The framework predicts menstrual cycle phases and generates personalized, feature-grounded feedback using hormonal, physiological, and symptom-related features.
+DistilBERT maintains an accuracy of 0.8432 under both PQC and differential privacy while requiring substantially less training time, inference latency, GPU memory, and communication than the decoder-only models.
+
+## GitHub Pages deployment
+
+1. Place `index.html`, `demo.html`, `style.css`, and `script.js` in the repository root.
+2. Commit and push the changes to `main`.
+3. Open **Settings → Pages**.
+4. Select **Deploy from a branch**.
+5. Choose the `main` branch and `/ (root)` folder.
+6. Save and wait for GitHub Pages to redeploy.
+
+## Disclaimer
+
+This project is a research demonstration. It is not medical advice, a diagnostic tool, or a substitute for professional care.
