@@ -4,12 +4,10 @@ services:
     runtime: python
     rootDir: backend
 
-    buildCommand: >
-      pip install --no-cache-dir
-      torch==2.6.0
-      --index-url https://download.pytorch.org/whl/cpu
-      &&
-      pip install --no-cache-dir -r requirements.txt
+    buildCommand: |
+      python -m pip install --upgrade pip
+      python -m pip install --no-cache-dir torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+      python -m pip install --no-cache-dir -r requirements.txt
 
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
 
@@ -30,3 +28,6 @@ services:
 
       - key: MKL_NUM_THREADS
         value: "1"
+
+      - key: CUDA_VISIBLE_DEVICES
+        value: ""
