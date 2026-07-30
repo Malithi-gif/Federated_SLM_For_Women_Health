@@ -1,291 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Secure federated LoRA fine-tuning of small language models for menstrual health classification on consumer devices." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Secure federated LoRA fine-tuning of small language models for women’s health support on consumer devices.">
   <title>Secure Federated SLMs for Women’s Health</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="hero" id="top">
-  <nav class="nav container" aria-label="Main navigation">
-    <a class="brand" href="#top"><span class="brand-mark">FH</span> Federated Health SLM</a>
-    <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navLinks">Menu</button>
+<header class="site-header" id="top">
+  <nav class="nav shell">
+    <a class="logo" href="#top"><span>FH</span> Federated Health SLM</a>
+    <button id="menuBtn" class="menu-btn" aria-label="Open menu">Menu</button>
     <div class="nav-links" id="navLinks">
-      <a href="#overview">Overview</a>
+      <a href="#about">About</a>
       <a href="#framework">Framework</a>
       <a href="#results">Results</a>
       <a href="#privacy">Privacy</a>
       <a href="demo.html">Demo</a>
-      <a href="https://github.com/Malithi-gif/Federated_SLM_For_Women_Health">Code</a>
+      <a class="github-link" href="https://github.com/Malithi-gif/Federated_SLM_For_Women_Health">GitHub</a>
     </div>
   </nav>
+</header>
 
-  <div class="hero-grid container">
-    <div>
-      <span class="eyebrow">IEEE Transactions on Consumer Electronics · Research Project</span>
+<main>
+<section class="hero">
+  <div class="shell hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">IEEE Transactions on Consumer Electronics · Research Project</p>
       <h1>Secure Federated LoRA Fine-Tuning of Small Language Models for Women’s Health Support</h1>
       <p class="lead">
-        A participant-level federated learning framework for menstrual phase classification,
-        comparing post-quantum-secure communication with client-level differential privacy.
+        A privacy-preserving framework for menstrual phase classification that compares
+        post-quantum-secure communication with client-level differential privacy.
       </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#results">Explore results</a>
+        <a class="btn secondary" href="demo.html">Open demo</a>
+      </div>
       <p class="authors">
         Malithi Mithsara Wanniarachchi Kankanamge, Ning Yang, Mohd Farhan Israk Soumik,
         Ahmed Imteaj, Hussein Zangoti, and Abdur R. Shahid
       </p>
-      <p class="affiliations">
-        Southern Illinois University · Florida Atlantic University · Jazan University
-      </p>
-      <div class="button-row">
-        <a class="button primary" href="#results">View Results</a>
-        <a class="button secondary" href="demo.html">Open Classification Demo</a>
-      </div>
-      <p class="notice">Research demonstration only. It is not medical advice or a diagnostic system.</p>
+      <p class="affiliations">Southern Illinois University · Florida Atlantic University · Jazan University</p>
     </div>
 
-    <div class="hero-visual" aria-label="Illustration of local health classification">
-      <div class="device-card">
-        <span class="status">Local inference</span>
-        <p class="muted">Predicted menstrual phase</p>
-        <strong class="phase">Luteal</strong>
-        <div class="signal-list">
-          <span>Hormonal features</span>
-          <span>Physiological features</span>
-          <span>Self-reported symptoms</span>
-        </div>
+    <div class="hero-panel">
+      <div class="phone">
+        <div class="phone-head"><span></span><span></span></div>
+        <p class="small-label">LOCAL CLASSIFICATION</p>
+        <h3>Predicted phase</h3>
+        <div class="phase">Luteal</div>
+        <div class="feature">Hormonal features</div>
+        <div class="feature">Physiological features</div>
+        <div class="feature">Self-reported symptoms</div>
       </div>
-      <div class="privacy-chip chip-one">Raw records remain local</div>
-      <div class="privacy-chip chip-two">Protected updates only</div>
+      <div class="floating one">Raw data remains local</div>
+      <div class="floating two">Only protected updates are shared</div>
     </div>
   </div>
-</header>
+</section>
 
-<main>
-  <section class="section container" id="overview">
-    <div class="section-heading">
-      <span class="eyebrow">Research overview</span>
-      <h2>Why privacy-preserving menstrual health intelligence matters</h2>
-      <p>
-        Menstrual applications collect highly sensitive information, including bleeding,
-        pain, mood, hormone levels, sleep, fertility, and reproductive-health indicators.
-        Centralized processing can create privacy, trust, and unauthorized-access risks.
-      </p>
+<section class="quick-stats shell">
+  <div><strong>5,659</strong><span>records</span></div>
+  <div><strong>18</strong><span>features</span></div>
+  <div><strong>15</strong><span>participants</span></div>
+  <div><strong>5</strong><span>backbone models</span></div>
+  <div><strong>2</strong><span>privacy settings</span></div>
+</section>
+
+<section class="section shell" id="about">
+  <div class="section-title">
+    <p class="kicker">Research motivation</p>
+    <h2>Privacy-aware menstrual health intelligence for consumer devices</h2>
+    <p>
+      Menstrual health applications may process sensitive information related to bleeding,
+      pain, mood, hormone levels, sleep, fertility, and reproductive health. The proposed
+      system keeps participant records local and shares only protected model updates.
+    </p>
+  </div>
+
+  <div class="cards three">
+    <article>
+      <span class="icon">01</span>
+      <h3>Subject-level federation</h3>
+      <p>Each participant is treated as an independent federated client to avoid centralizing raw records.</p>
+    </article>
+    <article>
+      <span class="icon">02</span>
+      <h3>Lightweight adaptation</h3>
+      <p>LoRA is used for decoder models, while DistilBERT is trained as a sequence classifier.</p>
+    </article>
+    <article>
+      <span class="icon">03</span>
+      <h3>Deployment evaluation</h3>
+      <p>Accuracy, F1, latency, throughput, memory, training time, communication, and privacy are measured.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section tinted" id="framework">
+  <div class="shell">
+    <div class="section-title">
+      <p class="kicker">Proposed framework</p>
+      <h2>Two privacy-preserving federated learning settings</h2>
     </div>
 
-    <div class="card-grid three">
-      <article class="info-card">
-        <span class="card-number">01</span>
-        <h3>Participant-level federation</h3>
-        <p>Each participant is treated as an independent client, keeping raw records on the local device.</p>
+    <figure class="paper-figure">
+      <img src="assets/framework.png" alt="Proposed PQC and differential privacy federated learning framework">
+      <figcaption>Participant-level data preparation, local LoRA fine-tuning, protected client updates, and server aggregation.</figcaption>
+    </figure>
+
+    <div class="method-grid">
+      <article class="method pqc">
+        <span class="tag">PQC</span>
+        <h3>Post-quantum-secure communication</h3>
+        <p>Protects global adapters and local client updates during transmission.</p>
+        <ul>
+          <li>ML-KEM key establishment</li>
+          <li>HKDF-SHA256 key derivation</li>
+          <li>AES-256-GCM encryption and authentication</li>
+          <li>FedAvg after server-side decryption</li>
+        </ul>
       </article>
-      <article class="info-card">
-        <span class="card-number">02</span>
-        <h3>Two protection settings</h3>
-        <p>Post-quantum-secure parameter exchange and client-level differential privacy are evaluated separately.</p>
-      </article>
-      <article class="info-card">
-        <span class="card-number">03</span>
-        <h3>Deployment-focused evaluation</h3>
-        <p>Accuracy, F1, runtime, latency, throughput, memory, energy, communication, and privacy are measured.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section alt" id="framework">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">Proposed framework</span>
-        <h2>From local menstrual records to a protected global model</h2>
-      </div>
-
-      <div class="pipeline" aria-label="Federated learning pipeline">
-        <div class="pipeline-step"><b>1</b><span>Clean and impute data</span></div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step"><b>2</b><span>Convert features to text</span></div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step"><b>3</b><span>Train locally with LoRA</span></div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step"><b>4</b><span>Protect client updates</span></div>
-        <div class="pipeline-arrow">→</div>
-        <div class="pipeline-step"><b>5</b><span>Aggregate with FedAvg</span></div>
-      </div>
-
-      <div class="framework-grid">
-        <article class="method-card pqc">
-          <div class="method-label">PQC setting</div>
-          <h3>Post-quantum-secure communication</h3>
-          <p>Protects global adapters and local updates during client-server transmission.</p>
-          <ul>
-            <li>ML-KEM key establishment</li>
-            <li>HKDF-SHA256 key derivation</li>
-            <li>AES-256-GCM authenticated encryption</li>
-            <li>FedAvg after server-side decryption</li>
-          </ul>
-        </article>
-
-        <article class="method-card dp">
-          <div class="method-label">DP setting</div>
-          <h3>Client-level differential privacy</h3>
-          <p>Limits information leakage about individual client contributions.</p>
-          <ul>
-            <li>L2 clipping with C = 0.5</li>
-            <li>Gaussian noise multiplier σ = 0.1</li>
-            <li>Privacy parameter δ = 10⁻⁵</li>
-            <li>RDP accounting for accumulated ε</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section container" id="data">
-    <div class="section-heading compact">
-      <span class="eyebrow">Data and experimental setup</span>
-      <h2>mcPHASES menstrual phase classification</h2>
-    </div>
-
-    <div class="metric-grid">
-      <div><strong>5,659</strong><span>records</span></div>
-      <div><strong>18</strong><span>features</span></div>
-      <div><strong>15</strong><span>selected participants</span></div>
-      <div><strong>4</strong><span>menstrual phases</span></div>
-      <div><strong>10 / 2 / 3</strong><span>train / validation / test clients</span></div>
-      <div><strong>3</strong><span>local epochs per round</span></div>
-    </div>
-
-    <div class="phase-row" aria-label="Target classes">
-      <span>Menstrual</span><span>Follicular</span><span>Fertility</span><span>Luteal</span>
-    </div>
-  </section>
-
-  <section class="section alt" id="results">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">Interactive results</span>
-        <h2>Compare five backbones under PQC and differential privacy</h2>
-        <p>Select a privacy setting and model to inspect classification and deployment results.</p>
-      </div>
-
-      <div class="controls">
-        <div class="segmented" id="privacyToggle" role="tablist" aria-label="Privacy setting">
-          <button class="active" data-setting="pqc" role="tab">PQC</button>
-          <button data-setting="dp" role="tab">Differential Privacy</button>
-        </div>
-
-        <label class="select-label">
-          Model
-          <select id="modelSelect">
-            <option value="distilbert">DistilBERT-base</option>
-            <option value="smollm">SmolLM3-3B</option>
-            <option value="qwen">Qwen2.5-3B</option>
-            <option value="phi">Phi-3.5-mini</option>
-            <option value="llama">Llama-3.1-8B</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="results-layout">
-        <article class="score-card">
-          <div class="score-ring" id="scoreRing">
-            <span id="accuracy">84.32%</span>
-            <small>Accuracy</small>
-          </div>
-          <h3 id="resultTitle">DistilBERT-base · PQC</h3>
-          <p id="resultSummary">Best overall accuracy with the lowest training, inference, memory, and communication cost.</p>
-        </article>
-
-        <article class="metrics-card">
-          <div class="metric-line">
-            <span>Macro-F1</span><strong id="macroF1">84.22%</strong>
-            <div class="bar"><i id="macroBar"></i></div>
-          </div>
-          <div class="metric-line">
-            <span>Weighted-F1</span><strong id="weightedF1">84.68%</strong>
-            <div class="bar"><i id="weightedBar"></i></div>
-          </div>
-          <div class="mini-grid">
-            <div><span>Rounds</span><strong id="rounds">16</strong></div>
-            <div><span>Training time</span><strong id="trainTime">0.1 h</strong></div>
-            <div><span>Latency</span><strong id="latency">1 ms/ex.</strong></div>
-            <div><span>Throughput</span><strong id="throughput">774.9 ex./s</strong></div>
-            <div><span>Peak GPU</span><strong id="gpu">1.0 GB</strong></div>
-            <div><span id="privacyMetricLabel">Ciphertext/round</span><strong id="privacyMetric">0.26 GB</strong></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Model</th><th>Setting</th><th>Rounds</th><th>Accuracy</th>
-              <th>Macro-F1</th><th>Weighted-F1</th><th>Train time</th>
-              <th>Latency</th><th>Peak GPU</th>
-            </tr>
-          </thead>
-          <tbody id="resultsTable"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="section container" id="privacy">
-    <div class="section-heading">
-      <span class="eyebrow">Privacy–utility interpretation</span>
-      <h2>PQC and DP protect different parts of the federated pipeline</h2>
-    </div>
-
-    <div class="comparison-grid">
-      <article>
-        <h3>Post-quantum security</h3>
-        <p>
-          Secures updates in transit without perturbing them, preserving utility but increasing
-          communication cost as adapter size grows.
-        </p>
-      </article>
-      <article>
-        <h3>Differential privacy</h3>
-        <p>
-          Protects individual client contributions through clipping and noise, but may reduce
-          accuracy, add training rounds, and increase memory use.
-        </p>
-      </article>
-      <article>
-        <h3>Main finding</h3>
-        <p>
-          DistilBERT maintains 0.8432 accuracy under both settings while requiring far less
-          training time, memory, latency, and communication than decoder models.
-        </p>
+      <article class="method dp">
+        <span class="tag">DP</span>
+        <h3>Client-level differential privacy</h3>
+        <p>Limits information leakage from each participant’s model update.</p>
+        <ul>
+          <li>L2 clipping with C = 0.5</li>
+          <li>Gaussian noise multiplier σ = 0.1</li>
+          <li>δ = 10⁻⁵</li>
+          <li>RDP accounting for accumulated ε</li>
+        </ul>
       </article>
     </div>
+  </div>
+</section>
 
-    <div class="caveat">
-      <strong>Important privacy caveat:</strong>
-      the reported DP ε values are large because the experiments use a small noise multiplier
-      to preserve model utility. These results should not be presented as strong worst-case privacy.
-    </div>
-  </section>
+<section class="section shell" id="results">
+  <div class="section-title">
+    <p class="kicker">Experimental results</p>
+    <h2>Compare models across utility and deployment cost</h2>
+    <p>Select a privacy setting and model to view the reported results.</p>
+  </div>
 
-  <section class="section alt" id="limitations">
-    <div class="container">
-      <div class="section-heading compact">
-        <span class="eyebrow">Limitations and future work</span>
-        <h2>What remains before real-world deployment</h2>
-      </div>
-      <div class="card-grid three">
-        <article class="info-card"><h3>Broader evaluation</h3><p>Use larger, more diverse cohorts and additional women’s health datasets.</p></article>
-        <article class="info-card"><h3>Stronger DP guarantees</h3><p>Explore larger noise multipliers, fewer rounds, and privacy–utility tuning to reduce ε.</p></article>
-        <article class="info-card"><h3>On-device validation</h3><p>Measure performance on real mobile and wearable hardware and conduct user-centered safety studies.</p></article>
+  <div class="result-controls">
+    <div class="toggle" id="privacyToggle">
+      <button class="active" data-setting="pqc">PQC</button>
+      <button data-setting="dp">Differential privacy</button>
+    </div>
+    <select id="modelSelect" aria-label="Select model">
+      <option value="distilbert">DistilBERT-base</option>
+      <option value="smollm">SmolLM3-3B</option>
+      <option value="qwen">Qwen2.5-3B</option>
+      <option value="phi">Phi-3.5-mini</option>
+      <option value="llama">Llama-3.1-8B</option>
+    </select>
+  </div>
+
+  <div class="result-dashboard">
+    <div class="score-box">
+      <p class="small-label">ACCURACY</p>
+      <div class="big-score" id="accuracy">84.32%</div>
+      <h3 id="resultTitle">DistilBERT-base · PQC</h3>
+      <p id="resultSummary">Best overall balance of classification utility and deployment efficiency.</p>
+    </div>
+    <div class="metric-box">
+      <div class="bar-row"><span>Macro-F1</span><strong id="macroF1">84.22%</strong><div><i id="macroBar"></i></div></div>
+      <div class="bar-row"><span>Weighted-F1</span><strong id="weightedF1">84.68%</strong><div><i id="weightedBar"></i></div></div>
+      <div class="small-metrics">
+        <div><span>Rounds</span><strong id="rounds">16</strong></div>
+        <div><span>Training</span><strong id="trainTime">0.1 h</strong></div>
+        <div><span>Latency</span><strong id="latency">1 ms/ex.</strong></div>
+        <div><span>Throughput</span><strong id="throughput">774.9 ex./s</strong></div>
+        <div><span>Peak GPU</span><strong id="gpu">1.0 GB</strong></div>
+        <div><span id="privacyMetricLabel">Ciphertext/round</span><strong id="privacyMetric">0.26 GB</strong></div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <figure class="paper-figure result-figure">
+    <img src="assets/efficiency.png" alt="Efficiency comparison across models">
+    <figcaption>Training time, inference latency, throughput, and peak GPU memory under PQC and DP.</figcaption>
+  </figure>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr><th>Model</th><th>Setting</th><th>Rounds</th><th>Accuracy</th><th>Macro-F1</th><th>Weighted-F1</th><th>Training</th><th>Latency</th><th>Peak GPU</th></tr>
+      </thead>
+      <tbody id="resultsTable"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section tinted" id="privacy">
+  <div class="shell privacy-layout">
+    <div>
+      <div class="section-title">
+        <p class="kicker">Privacy–utility trade-off</p>
+        <h2>PQC and differential privacy protect different risks</h2>
+      </div>
+      <div class="privacy-cards">
+        <article><h3>PQC</h3><p>Preserves model utility because updates are encrypted rather than perturbed, but communication cost grows with adapter size.</p></article>
+        <article><h3>Differential privacy</h3><p>Limits update-level information leakage through clipping and noise, but may reduce accuracy or increase training and memory cost.</p></article>
+        <article class="highlight"><h3>Main finding</h3><p>DistilBERT maintains 0.8432 accuracy under both settings while requiring much less time, memory, latency, and communication.</p></article>
+      </div>
+    </div>
+
+    <figure class="paper-figure compact-figure">
+      <img src="assets/communication.png" alt="Post-quantum communication overhead">
+      <figcaption>Post-quantum ciphertext transmitted per round and cumulatively across rounds.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section shell">
+  <div class="notice-box">
+    <strong>Important privacy note</strong>
+    <p>The reported differential privacy ε values are large because a small noise multiplier was selected to preserve utility. These experiments should not be interpreted as providing strong worst-case privacy.</p>
+  </div>
+</section>
 </main>
 
 <footer>
-  <div class="container footer-content">
-    <p>Secure Federated LoRA Fine-Tuning of Small Language Models for Women’s Health Support on Consumer Devices.</p>
-    <div><a href="#top">Back to top ↑</a> · <a href="https://github.com/Malithi-gif/Federated_SLM_For_Women_Health">GitHub repository</a></div>
+  <div class="shell footer-grid">
+    <div>
+      <strong>Federated Health SLM</strong>
+      <p>Research demonstration only. Not medical advice.</p>
+    </div>
+    <div>
+      <a href="#top">Back to top</a>
+      <a href="https://github.com/Malithi-gif/Federated_SLM_For_Women_Health">GitHub repository</a>
+    </div>
   </div>
 </footer>
 
