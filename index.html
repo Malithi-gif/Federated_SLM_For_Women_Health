@@ -195,23 +195,37 @@
 </section>
 
 <section class="section tinted" id="privacy">
-  <div class="shell privacy-layout">
-    <div>
-      <div class="section-title">
-        <p class="kicker">Privacy–utility trade-off</p>
-        <h2>PQC and differential privacy protect different risks</h2>
-      </div>
-      <div class="privacy-cards">
-        <article><h3>PQC</h3><p>Preserves model utility because updates are encrypted rather than perturbed, but communication cost grows with adapter size.</p></article>
-        <article><h3>Differential privacy</h3><p>Limits update-level information leakage through clipping and noise, but may reduce accuracy or increase training and memory cost.</p></article>
-        <article class="highlight"><h3>Main finding</h3><p>DistilBERT maintains 0.8432 accuracy under both settings while requiring much less time, memory, latency, and communication.</p></article>
-      </div>
+  <div class="shell">
+    <div class="section-title">
+      <p class="kicker">Privacy–utility trade-off</p>
+      <h2>PQC and differential privacy protect different risks</h2>
     </div>
 
-    <figure class="paper-figure compact-figure">
-      <img src="assets/communication.png" alt="Post-quantum communication overhead">
-      <figcaption>Post-quantum ciphertext transmitted per round and cumulatively across rounds.</figcaption>
-    </figure>
+    <div class="privacy-cards">
+      <article>
+        <h3>PQC</h3>
+        <p>
+          Preserves model utility because updates are encrypted rather than
+          perturbed, but communication cost grows with adapter size.
+        </p>
+      </article>
+
+      <article>
+        <h3>Differential privacy</h3>
+        <p>
+          Limits update-level information leakage through clipping and noise,
+          but may reduce accuracy or increase training and memory cost.
+        </p>
+      </article>
+
+      <article class="highlight">
+        <h3>Main finding</h3>
+        <p>
+          DistilBERT maintains 0.8432 accuracy under both settings while
+          requiring much less time, memory, latency, and communication.
+        </p>
+      </article>
+    </div>
   </div>
 </section>
 
